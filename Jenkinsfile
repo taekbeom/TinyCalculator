@@ -5,13 +5,13 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'g++ -o TinyCalculator main.cpp'
+                sh 'g++ -o TinyCalculator.exe main.cpp'
             }
         }
         
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'TinyCalculator', fingerprint: true
+                archiveArtifacts artifacts: 'TinyCalculator.exe', fingerprint: true
             }
         }
     }
