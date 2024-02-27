@@ -1,17 +1,21 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'gcc:latest'
+        }
+    }
     
     stages {
         
         stage('Build') {
             steps {
-                sh 'g++ -o TinyCalculator.exe main.cpp'
+                sh 'g++ -o TinyCalculator main.cpp'
             }
         }
         
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'TinyCalculator.exe', fingerprint: true
+                archiveArtifacts artifacts: 'TinyCalculator', fingerprint: true
             }
         }
     }
